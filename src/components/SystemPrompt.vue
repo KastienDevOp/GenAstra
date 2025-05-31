@@ -53,12 +53,12 @@ const onKeydown = (event: KeyboardEvent) => {
 <template>
   <aside class="flex flex-col gap-6">
     <div
-      class="flex w-full flex-row items-center justify-center gap-4 rounded-b-xl bg-gray-100 px-4 py-2 dark:bg-gray-800"
+      class="flex w-full flex-row items-center justify-center gap-4 rounded-b-xl bg-light-latte-foam px-4 py-2 dark:bg-dark-mocha"
     >
       <div class="mr-auto flex h-full items-center">
         <div>
           <span
-            class="block h-full rounded border-none p-2 text-lg font-medium text-gray-900 dark:text-gray-100"
+            class="block h-full rounded border-none p-2 text-lg font-medium text-dark-roast dark:text-milky-latte"
           >
             System Prompts
           </span>
@@ -69,11 +69,11 @@ const onKeydown = (event: KeyboardEvent) => {
 
     <div class="flex flex-col overflow-y-auto space-y-6 px-4">
       <!-- Custom Instructions Section -->
-      <div class="rounded-xl bg-gray-100 p-6 shadow-sm dark:bg-gray-800">
-        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+      <div class="rounded-xl bg-light-latte-foam p-6 shadow-sm dark:bg-dark-mocha">
+        <h2 class="mb-4 text-lg font-semibold text-dark-roast dark:text-milky-latte">
           Custom Instructions
         </h2>
-        <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
+        <p class="mb-4 text-sm text-muted-cocoa dark:text-gray-300">
           What would you like the current model to know about you to provide better
           responses?
         </p>
@@ -81,18 +81,18 @@ const onKeydown = (event: KeyboardEvent) => {
           <textarea
             ref="textarea"
             v-model="configInput"
-            class="block min-h-[150px] w-full resize-none rounded-lg border-none bg-white p-4 text-sm text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:ring-blue-500 sm:text-base"
+            class="block min-h-[150px] w-full resize-none rounded-lg border-none bg-cream p-4 text-sm text-dark-roast shadow-sm focus:outline-none focus:ring-2 focus:ring-brewed-coffee dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:focus:ring-brewed-coffee sm:text-base"
             @keydown="onKeydown"
           ></textarea>
         </form>
       </div>
 
       <!-- Default Instructions Section -->
-      <div class="rounded-xl bg-gray-100 p-6 shadow-sm dark:bg-gray-800">
-        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+      <div class="rounded-xl bg-light-latte-foam p-6 shadow-sm dark:bg-dark-mocha">
+        <h2 class="mb-4 text-lg font-semibold text-dark-roast dark:text-milky-latte">
           Default Instructions
         </h2>
-        <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
+        <p class="mb-4 text-sm text-muted-cocoa dark:text-gray-300">
           What would you like all models to know about you to provide better responses?
           This prompt will be applied for all models by default even if you configure
           custom prompt for a model.
@@ -101,7 +101,7 @@ const onKeydown = (event: KeyboardEvent) => {
           <textarea
             ref="textarea"
             v-model="defaultConfigInput"
-            class="block min-h-[150px] w-full resize-none rounded-lg border-none bg-white p-4 text-sm text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:ring-blue-500 sm:text-base"
+            class="block min-h-[150px] w-full resize-none rounded-lg border-none bg-cream p-4 text-sm text-dark-roast shadow-sm focus:outline-none focus:ring-2 focus:ring-brewed-coffee dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:focus:ring-brewed-coffee sm:text-base"
           ></textarea>
         </form>
       </div>
@@ -110,7 +110,7 @@ const onKeydown = (event: KeyboardEvent) => {
         <button
           type="button"
           @click="onSubmit"
-          class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-offset-gray-900"
+          class="inline-flex items-center gap-2 rounded-lg bg-brewed-coffee px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-dark-mocha focus:outline-none focus:ring-2 focus:ring-brewed-coffee focus:ring-offset-2 dark:bg-dark-chocolate dark:hover:bg-espresso dark:focus:ring-offset-dark-roast"
         >
           <IconWritingSign class="h-5 w-5" />
           Save Changes

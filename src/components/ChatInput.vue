@@ -63,7 +63,7 @@ const handleCompositionEnd = () => {
 <template>
   <form @submit.prevent="onSubmit">
     <div class="flex px-2 flex-col sm:flex-row items-center">
-      <div class="text-gray-900 dark:text-gray-100 space-x-2 text-sm font-medium mb-2" v-if="showSystem">
+      <div class="text-dark-roast dark:text-milky-latte space-x-2 text-sm font-medium mb-2" v-if="showSystem">
         <label>
           <input type="radio" :value="false" v-model="isSystemMessage">
           User
@@ -77,7 +77,7 @@ const handleCompositionEnd = () => {
         <button
           type="button"
           @click="regenerateResponse"
-          class="rounded-lg text-blue-700 text-sm font-medium transition duration-200 ease-in-out hover:text-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:text-gray-400 disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:ring-blue-800 dark:disabled:text-gray-600"
+          class="rounded-lg text-brewed-coffee text-sm font-medium transition duration-200 ease-in-out hover:text-dark-mocha focus:outline-none focus:ring-4 focus:ring-brewed-coffee disabled:text-gray-400 disabled:opacity-50 dark:text-brewed-coffee dark:hover:text-dark-mocha dark:focus:ring-brewed-coffee dark:disabled:text-gray-600"
         >
           Regenerate response
         </button>
@@ -87,7 +87,7 @@ const handleCompositionEnd = () => {
       <textarea
         ref="textarea"
         v-model="userInput"
-        class="block max-h-[500px] w-full resize-none rounded-xl border-none bg-gray-50 p-4 pl-4 pr-20 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-700 dark:text-gray-50 dark:placeholder-gray-300 dark:focus:ring-blue-600 sm:text-base"
+        class="block max-h-[500px] w-full resize-none rounded-xl border-none bg-light-latte-foam p-4 pl-4 pr-20 text-sm text-dark-roast focus:outline-none focus:ring-2 focus:ring-brewed-coffee dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:focus:ring-brewed-coffee sm:text-base"
         placeholder="Enter your prompt"
         @keydown="onKeydown"
         @compositionstart="handleCompositionStart"
@@ -96,7 +96,7 @@ const handleCompositionEnd = () => {
       <button
         type="submit"
         :disabled="isInputValid == false && isAiResponding == false"
-        class="group absolute bottom-2 right-2.5 flex size-10 items-center justify-center rounded-lg bg-blue-700 text-sm font-medium text-white transition duration-200 ease-in-out hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-gray-400 disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dark:disabled:bg-gray-600 sm:text-base"
+        class="group absolute bottom-2 right-2.5 flex size-10 items-center justify-center rounded-lg bg-brewed-coffee text-sm font-medium text-white transition duration-200 ease-in-out hover:bg-dark-mocha focus:outline-none focus:ring-4 focus:ring-brewed-coffee disabled:bg-gray-400 disabled:opacity-50 dark:bg-dark-chocolate dark:hover:bg-espresso dark:focus:ring-brewed-coffee dark:disabled:bg-gray-600 sm:text-base"
       >
         <IconPlayerStopFilled
           v-if="isAiResponding"

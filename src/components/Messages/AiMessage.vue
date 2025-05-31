@@ -25,22 +25,22 @@ const thought = computed(() => {
 </script>
 
 <template>
-  <div class="flex rounded-xl bg-gray-100 px-2 py-6 dark:bg-gray-800 sm:px-4">
+  <div class="flex rounded-xl bg-cream px-2 py-6 dark:bg-dark-roast sm:px-4">
     <img
-      class="mr-2 flex size-10 aspect-square rounded-full border border-gray-200 bg-white object-contain sm:mr-4"
+      class="mr-2 flex size-10 aspect-square rounded-full border border-light-coffee-stain bg-white object-contain sm:mr-4"
       :src="logo"
       alt="Ollama"
     />
 
     <div class="flex max-w-3xl items-center rounded-xl">
-      <code v-if="!enableMarkdown" class="whitespace-pre-line">{{ message.content }}</code>
+      <code v-if="!enableMarkdown" class="whitespace-pre-line text-dark-roast dark:text-milky-latte">{{ message.content }}</code>
       <div
         v-else
-        class="prose prose-base max-w-full dark:prose-invert prose-headings:font-semibold prose-h1:text-lg prose-h2:text-base prose-h3:text-base prose-p:first:mt-0 prose-a:text-blue-600 prose-code:text-sm prose-code:text-gray-100 prose-pre:p-2 dark:prose-code:text-gray-100"
+        class="prose prose-base max-w-full dark:prose-invert prose-headings:font-semibold prose-h1:text-lg prose-h2:text-base prose-h3:text-base prose-p:first:mt-0 prose-a:text-warm-coffee-brown prose-code:text-sm prose-code:text-dark-roast prose-pre:p-2 dark:prose-p:text-milky-latte dark:prose-code:text-milky-latte"
       >
         <details
           v-if="thought[0]"
-          class="whitespace-pre-wrap rounded-md mb-4 border border-blue-200 bg-blue-50 p-4 text-sm leading-tight text-blue-900 dark:border-blue-700 dark:bg-blue-800 dark:text-blue-50"
+          class="whitespace-pre-wrap rounded-md mb-4 border border-light-coffee-stain bg-cream p-4 text-sm leading-tight text-dark-roast dark:border-dark-chocolate dark:bg-espresso dark:text-milky-latte"
         >
           <summary>Thought</summary>
           {{ thought[0] }}

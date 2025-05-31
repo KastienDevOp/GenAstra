@@ -40,12 +40,12 @@ const lang = navigator.language
 <template>
   <aside class="flex">
     <div
-      class="flex h-screen w-60 flex-col overflow-y-auto border-r border-gray-200 bg-white pt-2 dark:border-gray-800 dark:bg-gray-900 sm:h-screen sm:w-64"
+      class="flex h-screen w-60 flex-col overflow-y-auto border-r border-light-coffee-stain bg-cream pt-2 dark:border-dark-chocolate dark:bg-dark-roast sm:h-screen sm:w-64"
     >
       <div class="mx-2 mb-2">
         <button
           @click="onNewChat"
-          class="flex w-full items-center justify-center gap-x-2 rounded-md bg-blue-600 px-4 py-3 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-offset-gray-900"
+          class="flex w-full items-center justify-center gap-x-2 rounded-md bg-brewed-coffee px-4 py-3 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-dark-mocha focus:outline-none focus:ring-2 focus:ring-mocha focus:ring-offset-2 dark:bg-dark-chocolate dark:hover:bg-espresso dark:focus:ring-offset-dark-roast"
         >
           <IconPlus class="h-5 w-5" />
           <span>New Chat</span>
@@ -53,24 +53,24 @@ const lang = navigator.language
       </div>
 
       <div
-        class="h-full space-y-4 overflow-y-auto border-b border-gray-200 px-2 py-4 dark:border-gray-800"
+        class="h-full space-y-4 overflow-y-auto border-b border-light-coffee-stain px-2 py-4 dark:border-dark-chocolate"
       >
         <button
           v-for="chat in sortedChats"
           @click="onSwitchChat(chat.id!)"
           @keyup.delete="deleteChat(chat.id!)"
           :class="{
-            'bg-gray-100 dark:bg-gray-800': activeChat?.id == chat.id,
+            'bg-light-latte-foam dark:bg-dark-mocha': activeChat?.id == chat.id,
           }"
-          class="flex w-full flex-col gap-y-1 rounded-md px-3 py-2 text-left transition-colors duration-100 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-100 dark:placeholder-gray-300 dark:hover:bg-gray-700 dark:focus:ring-blue-500"
+          class="flex w-full flex-col gap-y-1 rounded-md px-3 py-2 text-left transition-colors duration-100 ease-in-out hover:bg-light-latte-foam focus:outline-none focus:ring-2 focus:ring-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:hover:bg-dark-chocolate dark:focus:ring-mocha"
         >
-          <span class="text-sm font-medium leading-none text-gray-900 dark:text-gray-100">
+          <span class="text-sm font-medium leading-none text-dark-roast dark:text-milky-latte">
             {{ chat.name }}
           </span>
-          <span class="text-xs leading-none text-gray-700 dark:text-gray-300">
+          <span class="text-xs leading-none text-muted-cocoa dark:text-gray-300">
             {{ chat.model }}
           </span>
-          <span class="text-xs leading-none text-gray-700 dark:text-gray-300">
+          <span class="text-xs leading-none text-muted-cocoa dark:text-gray-300">
             {{
               chat.createdAt.toLocaleDateString(lang, {
                 day: '2-digit',
@@ -88,7 +88,7 @@ const lang = navigator.language
       <div class="mt-auto w-full space-y-2 px-2 py-4">
         <button
           @click="isDarkMode = !isDarkMode"
-          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-gray-900 transition-colors duration-100 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-300 dark:hover:bg-gray-700 dark:focus:ring-blue-500"
+          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-dark-roast transition-colors duration-100 ease-in-out hover:bg-light-latte-foam focus:outline-none focus:ring-2 focus:ring-mocha dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:hover:bg-dark-chocolate dark:focus:ring-mocha"
         >
           <IconSun v-if="isDarkMode" class="size-4 opacity-50 group-hover:opacity-80" />
           <IconMoon v-else class="size-4 opacity-50 group-hover:opacity-80" />
@@ -97,14 +97,14 @@ const lang = navigator.language
         </button>
         <button
           v-if="false"
-          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-gray-900 transition-colors duration-100 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-300 dark:hover:bg-gray-700 dark:focus:ring-blue-500"
+          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-dark-roast transition-colors duration-100 ease-in-out hover:bg-light-latte-foam focus:outline-none focus:ring-2 focus:ring-mocha dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:hover:bg-dark-chocolate dark:focus:ring-mocha"
         >
           <IconUserCircle class="size-4 opacity-50 group-hover:opacity-80" />
           User
         </button>
         <button
           @click="toggleSystemPromptPanel"
-          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-gray-900 transition-colors duration-100 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-300 dark:hover:bg-gray-700 dark:focus:ring-blue-500"
+          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-dark-roast transition-colors duration-100 ease-in-out hover:bg-light-latte-foam focus:outline-none focus:ring-2 focus:ring-mocha dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:hover:bg-dark-chocolate dark:focus:ring-mocha"
         >
           <IconMessageCode class="size-4 opacity-50 group-hover:opacity-80" />
 
@@ -112,7 +112,7 @@ const lang = navigator.language
         </button>
         <button
           @click="toggleSettingsPanel"
-          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-gray-900 transition-colors duration-100 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-300 dark:hover:bg-gray-700 dark:focus:ring-blue-500"
+          class="group flex w-full items-center gap-x-2 rounded-md px-3 py-2 text-left text-sm font-medium text-dark-roast transition-colors duration-100 ease-in-out hover:bg-light-latte-foam focus:outline-none focus:ring-2 focus:ring-mocha dark:bg-dark-mocha dark:text-milky-latte dark:placeholder-gray-300 dark:hover:bg-dark-chocolate dark:focus:ring-mocha"
         >
           <IconSettings2 class="size-4 opacity-50 group-hover:opacity-80" />
 

@@ -33,13 +33,13 @@ const { disabled = false } = defineProps<Props>()
 </script>
 
 <template>
-  <div class="flex flex-row text-gray-900 dark:text-gray-100">
+  <div class="flex flex-row text-dark-roast dark:text-milky-latte">
     <div class="inline-flex items-center gap-2">
       <select
         :disabled="disabled"
         :value="activeChat?.model ?? currentModel"
         @change="handleModelChange"
-        class="w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-50 dark:bg-gray-700 dark:text-gray-100"
+        class="w-full cursor-pointer rounded-lg bg-cream py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-brewed-coffee disabled:opacity-50 dark:bg-dark-roast dark:text-milky-latte"
       >
         <option :value="undefined" disabled selected>Select a model</option>
         <option v-for="model in availableModels" :value="model.name">
@@ -51,7 +51,7 @@ const { disabled = false } = defineProps<Props>()
         :disabled="disabled"
         title="Refresh available models"
         @click="performRefreshModel"
-        class="inline-flex items-center justify-center rounded-lg border-none bg-gray-100 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-50 dark:bg-gray-700 dark:text-gray-100"
+        class="inline-flex items-center justify-center rounded-lg border-none bg-light-latte-foam p-2 text-sm focus:outline-none focus:ring-2 focus:ring-brewed-coffee disabled:opacity-50 dark:bg-dark-mocha dark:text-milky-latte"
       >
         <IconRefresh
           class="h-4 w-4 -scale-100 text-white"

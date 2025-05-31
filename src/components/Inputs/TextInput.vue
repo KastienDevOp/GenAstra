@@ -20,7 +20,7 @@ const emit = defineEmits<{
 
 <template>
   <div>
-    <label :for="id" class="mt-4 mb-2 block px-2 text-sm font-medium" v-if="label">
+    <label :for="id" class="mt-4 mb-2 block px-2 text-sm font-medium text-dark-roast dark:text-milky-latte" v-if="label">
       {{ label }}
     </label>
     <input
@@ -30,7 +30,7 @@ const emit = defineEmits<{
       :id="id"
       :type="type"
       :class="small ? 'text-xs' : 'text-sm'"
-      class="block w-full rounded-lg text-gray-900 dark:text-gray-100 bg-gray-100 p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-800 dark:placeholder-gray-300 dark:focus:ring-blue-600"
+      class="block w-full rounded-lg text-dark-roast dark:text-milky-latte bg-light-latte-foam p-2.5 focus:outline-none focus:ring-2 focus:ring-brewed-coffee dark:bg-dark-mocha dark:placeholder-gray-300 dark:focus:ring-brewed-coffee"
       :placeholder="placeholder"
     />
   </div>

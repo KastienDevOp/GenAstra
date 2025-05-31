@@ -28,14 +28,14 @@ watchEffect(() => {
   <div class="flex items-center mb-4 justify-between">
     <label
       @click="toggle"
-      class="block px-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+      class="block px-2 text-sm font-medium text-dark-roast dark:text-milky-latte"
       v-if="label"
     >
       {{ label }}
     </label>
     <button
-      :class="toggleState ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'"
-      class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 disabled:opacity-50"
+      :class="toggleState ? 'bg-brewed-coffee' : 'bg-light-coffee-stain dark:bg-dark-chocolate'"
+      class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brewed-coffee focus:ring-offset-2 disabled:opacity-50"
       @click="toggle"
       role="switch"
       :aria-checked="toggleState"
