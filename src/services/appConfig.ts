@@ -48,7 +48,16 @@ export function useConfig() {
 
   const getCurrentSystemMessage = async () => {
     let config = await configDbLayer.getCurrentConfig(currentModel.value)
-    return config?.systemPrompt ?? null
+    if (!config) {
+      // If no config exists, create a default one
+      await configDbLayer.setConfig({
+        model: 'default',
+        systemPrompt: '',
+        createdAt: new Date(),
+      })
+      return ''
+    }
+    return config.systemPrompt ?? ''
   }
 
   const generateIdFromModel = async (model: string): Promise<number> => {
@@ -61,8 +70,31 @@ export function useConfig() {
 
   const initializeConfig = async (model: string) => {
     try {
-      const modelConfig = await configDbLayer.getConfig(model)
-      const defaultConfig = await configDbLayer.getConfig('default')
+      let modelConfig = await configDbLayer.getConfig(model)
+      let defaultConfig = await configDbLayer.getConfig('default')
+
+      // If no model config exists, create a default one
+      if (!modelConfig) {
+        modelConfig = {
+          model: model,
+          systemPrompt: '',
+          createdAt: new Date(),
+        }
+        modelConfig.id = await generateIdFromModel(model)
+        await configDbLayer.setConfig(modelConfig)
+      }
+
+      // If no default config exists, create one
+      if (!defaultConfig) {
+        defaultConfig = {
+          model: 'default',
+          systemPrompt: '',
+          createdAt: new Date(),
+        }
+        defaultConfig.id = await generateIdFromModel('default')
+        await configDbLayer.setConfig(defaultConfig)
+      }
+
       return { modelConfig: modelConfig, defaultConfig: defaultConfig }
     } catch (error) {
       console.error('Failed to initialize config:', error)

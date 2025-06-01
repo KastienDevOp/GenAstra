@@ -288,6 +288,24 @@ export function useChats() {
     }
   }
 
+  const deleteMessage = async (messageId: number) => {
+    if (!activeChat.value) return
+
+    try {
+      await dbLayer.deleteMessage(messageId)
+
+      // Remove the message from the current chat's messages
+      messages.value = messages.value.filter((message) => message.id !== messageId)
+
+      // If this was the last message in the chat, clear the chat
+      if (messages.value.length === 0) {
+        await startNewChat('New chat')
+      }
+    } catch (error) {
+      console.error(`Failed to delete message with ID ${messageId}:`, error)
+    }
+  }
+
   const startAiMessage = async (initialContent: string, chatId: number) => {
     const message: Message = {
       chatId: chatId,
@@ -368,6 +386,7 @@ export function useChats() {
     startNewChat,
     switchChat,
     deleteChat,
+    deleteMessage,
     addUserMessage,
     regenerateResponse,
     addSystemMessage,

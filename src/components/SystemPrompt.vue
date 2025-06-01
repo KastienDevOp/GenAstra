@@ -18,6 +18,11 @@ const initialize = () => {
   initializeConfig(currentModel.value).then(function (configs) {
     configInput.value = configs?.modelConfig?.systemPrompt ?? ''
     defaultConfigInput.value = configs?.defaultConfig?.systemPrompt ?? ''
+  }).catch(function (error) {
+    console.error('Failed to initialize system prompt:', error)
+    // Set default values in case of error
+    configInput.value = ''
+    defaultConfigInput.value = ''
   })
 }
 
