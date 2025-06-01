@@ -30,3 +30,6 @@ package-lock.json
 .aider*
 
 ollama_data/
+
+# Local files
+sentiment_engine.md
