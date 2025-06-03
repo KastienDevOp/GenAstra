@@ -1,8 +1,9 @@
 import { computed, ref } from 'vue'
-import { Chat, db, Message } from './database'
+import { Chat, Message } from './database'
 import { historyMessageLength, currentModel, useConfig } from './appConfig'
 import { useAI } from './useAI.ts'
 import { ChatCompletedResponse, ChatPartResponse, useApi } from './api.ts'
+import { dbAdapter, initDbAdapter } from './dbAdapter'
 
 interface ChatExport extends Chat {
   messages: Message[]
@@ -15,55 +16,78 @@ const messages = ref<Message[]>([])
 const systemPrompt = ref<Message>()
 const ongoingAiMessages = ref<Map<number, Message>>(new Map())
 
-// Database Layer
+// Database Layer - Now using dbAdapter which handles both IndexedDB and Qdrant
 const dbLayer = {
+  // Initialize the database adapter
+  async init() {
+    try {
+      await initDbAdapter();
+      return true;
+    } catch (error) {
+      console.error('Failed to initialize database adapter:', error);
+      return false;
+    }
+  },
+
+  // Chat operations
   async getAllChats() {
-    return db.chats.toArray()
+    return dbAdapter.getAllChats();
   },
 
   async getChat(chatId: number) {
-    return db.chats.get(chatId)
+    return dbAdapter.getChat(chatId);
   },
 
   async getMessages(chatId: number) {
-    return db.messages.where('chatId').equals(chatId).toArray()
+    return dbAdapter.getMessages(chatId);
   },
 
   async addChat(chat: Chat) {
-    return db.chats.add(chat)
+    return dbAdapter.addChat(chat);
   },
 
   async updateChat(chatId: number, updates: Partial<Chat>) {
-    return db.chats.update(chatId, updates)
+    return dbAdapter.updateChat(chatId, updates);
   },
 
   async addMessage(message: Message) {
-    return db.messages.add(message)
+    return dbAdapter.addMessage(message);
   },
 
   async updateMessage(messageId: number, updates: Partial<Message>) {
-    return db.messages.update(messageId, updates)
+    return dbAdapter.updateMessage(messageId, updates);
   },
 
   async deleteChat(chatId: number) {
-    return db.chats.delete(chatId)
-  },
-
-  async deleteMessagesOfChat(chatId: number) {
-    return db.messages.where('chatId').equals(chatId).delete()
+    return dbAdapter.deleteChat(chatId);
   },
 
   async deleteMessage(messageId: number) {
-    return db.messages.delete(messageId)
+    return dbAdapter.deleteMessage(messageId);
+  },
+
+  async deleteMessagesOfChat(chatId: number) {
+    return dbAdapter.deleteMessagesOfChat(chatId);
   },
 
   async clearChats() {
-    return db.chats.clear()
+    return dbAdapter.clearAllData();
   },
 
   async clearMessages() {
-    return db.messages.clear()
+    return dbAdapter.clearAllData();
   },
+
+  // Migration utility
+  async migrateToQdrant() {
+    try {
+      await dbAdapter.migrateToQdrant();
+      return true;
+    } catch (error) {
+      console.error('Migration to Qdrant failed:', error);
+      return false;
+    }
+  }
 }
 
 export function useChats() {
@@ -209,7 +233,7 @@ export function useChats() {
     const currentChatId = activeChat.value.id!
     const message = messages.value[messages.value.length - 1]
     if (message && message.role === 'assistant') {
-      if (message.id) db.messages.delete(message.id)
+      if (message.id) await dbLayer.deleteMessage(message.id)
       messages.value.pop()
     }
     try {

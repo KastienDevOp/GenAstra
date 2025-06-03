@@ -10,6 +10,7 @@
     "format": "npx prettier --write src"
   },
   "dependencies": {
+    "@qdrant/js-client-rest": "^1.14.1",
     "@tabler/icons-vue": "^2.38.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/markdown-it": "^13.0.7",

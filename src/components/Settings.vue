@@ -4,6 +4,7 @@ import ToggleInput from './Inputs/ToggleInput.vue'
 import TextInput from './Inputs/TextInput.vue'
 import ExportButton from './History/ExportButton.vue'
 import ImportButton from './History/ImportButton.vue'
+import QdrantSettings from './settings/QdrantSettings.vue'
 import {
   baseUrl,
   historyMessageLength,
@@ -44,9 +45,14 @@ const confirmWipe = () => {
       <div
         class="mb-4 border-t border-light-coffee-stain px-2 py-4 text-dark-roast dark:border-dark-chocolate dark:text-milky-latte"
       >
-        <div>
-          <ToggleInput label="Enable Markdown" v-model="enableMarkdown" />
-          <ToggleInput label="Show System messages" v-model="showSystem" />
+        <div class="space-y-4">
+          <div>
+            <ToggleInput label="Enable Markdown" v-model="enableMarkdown" />
+            <ToggleInput label="Show System messages" v-model="showSystem" />
+          </div>
+          
+          <!-- Qdrant Vector Database Settings -->
+          <QdrantSettings />
         </div>
 
         <div>

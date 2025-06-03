@@ -31,5 +31,8 @@ package-lock.json
 
 ollama_data/
 
+# Environment variables
+.env
+
 # Local files
 sentiment_engine.md

@@ -1,8 +1,8 @@
-# GenAstra: Chatbot with Local Storage and Individual Chat Deletion
+# GenAstra: AI-Powered Chatbot with Vector Search
 
 ![GenAstra Logo](public/logo.png)
 
-GenAstra is a powerful chatbot application that allows users to have multiple chat sessions, delete individual chats, and store chat history locally using JSON. This project is built with modern web technologies and offers a clean, intuitive user interface.
+GenAstra is an advanced chatbot application that enables seamless conversations with AI. It features multiple chat sessions, local storage with IndexedDB, and powerful vector-based semantic search using Qdrant. Built with modern web technologies, GenAstra offers a clean, intuitive interface with enhanced search capabilities.
 
 ## Table of Contents
 
@@ -17,14 +17,65 @@ GenAstra is a powerful chatbot application that allows users to have multiple ch
 
 ## Features
 
-- Multiple chat sessions
-- Delete individual chats
-- Local storage of chat history using JSON
-- Each chat has its own separate history
-- Modern and responsive UI
-- Easy to use and customize
+- **Conversation Management**
+  - Multiple, independent chat sessions
+  - Delete individual chats or clear all history
+  - Responsive design for all devices
 
-## Installation
+- **Advanced Search**
+  - Semantic search across all conversations
+  - Vector similarity search powered by Qdrant
+  - Fast and accurate message retrieval
+
+- **Data Storage**
+  - Local storage with IndexedDB (Dexie.js)
+  - Optional Qdrant vector database integration
+  - Automatic data migration between storage backends
+
+- **Developer Friendly**
+  - TypeScript support
+  - Modern Vue 3 composition API
+  - Easy configuration via environment variables
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16+ and npm/yarn/pnpm
+- (Optional) Docker for local Qdrant instance
+
+### Environment Variables
+
+Create a `.env` file in the root directory (use `.env.example` as a template):
+
+```env
+# Qdrant Configuration
+VITE_QDRANT_URL=http://localhost:6333  # Default local Qdrant URL
+
+# For Qdrant Cloud (uncomment and update)
+# VITE_QDRANT_URL=https://your-cluster-url.aws.qdrant.cloud
+# VITE_QDRANT_API_KEY=your-api-key-here
+
+# Optional: Override default collection names
+# VITE_QDRANT_CHAT_COLLECTION=chats
+# VITE_QDRANT_MESSAGE_COLLECTION=messages
+```
+
+### Qdrant Setup
+
+1. **Local Development** (using Docker):
+   ```bash
+   docker run -d -p 6333:6333 -p 6334:6334 qdrant/qdrant
+   ```
+
+2. **Qdrant Cloud** (production):
+   - Create an account at [Qdrant Cloud](https://cloud.qdrant.io/)
+   - Create a new cluster and get your API key
+   - Update the environment variables accordingly
+
+For detailed setup instructions, see [QDRANT_SETUP.md](QDRANT_SETUP.md)
+
+### Installation
 
 To get a local copy up and running follow these simple steps:
 
@@ -68,11 +119,32 @@ To get a local copy up and running follow these simple steps:
 
 ## Technologies Used
 
-- **Frontend**: Vue.js, TypeScript, Tailwind CSS
-- **State Management**: Vuex
-- **Local Storage**: IndexedDB, LocalStorage
-- **Build Tool**: Vite
-- **Package Manager**: npm, yarn, pnpm
+- **Frontend**
+  - [Vue 3](https://vuejs.org/) - Progressive JavaScript Framework
+  - [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+  - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+  - [Pinia](https://pinia.vuejs.org/) - Intuitive Vuex alternative
+  - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+
+- **Data Storage**
+  - [Qdrant](https://qdrant.tech/) - Vector similarity search engine
+  - [Dexie.js](https://dexie.org/) - IndexedDB wrapper
+  - [@qdrant/js-client-rest](https://github.com/qdrant/qdrant-js) - Qdrant JavaScript client
+
+- **Development Tools**
+  - [ESLint](https://eslint.org/) - Code linting
+  - [Prettier](https://prettier.io/) - Code formatting
+  - [Docker](https://www.docker.com/) - Containerization
+
+## Vector Database Integration
+
+This application uses Qdrant as a vector database to enable semantic search and efficient retrieval of chat history. Key features include:
+
+- Semantic search across all chats
+- Hybrid storage with fallback to IndexedDB
+- Efficient similarity search for finding related conversations
+
+For detailed setup and configuration, see [QDRANT_SETUP.md](QDRANT_SETUP.md)
 
 ## Project Structure
 
